@@ -13,7 +13,6 @@ limite_por_saque = 500
 SAQUE_DIARIO = 3
 total_saques = 0
 extrato = ''
-total_depositos = 0
 menu_principal = ''''
 Seja Bem Vindo ao Gabi's Bank!\n
 Selecione uma das opções abaixo para prosseguirmos com o seu atendimento:\n
@@ -29,13 +28,12 @@ while True:
         valor_a_ser_depositado = float(input('Qual valor você deseja depositar?\n'))
         if valor_a_ser_depositado > 0:
             saldo = saldo + valor_a_ser_depositado
-            total_depositos = total_depositos + 1
             extrato = extrato + f'Depósito: R$ {valor_a_ser_depositado:.2f}\n'
             print('Valor depositado com sucesso!')
         else:
             print('Valor inválido para depósito.')
     elif opcao_usuario == '2':
-        valor_a_ser_sacado = float(input('Qual valor deseha sacar?\n'))
+        valor_a_ser_sacado = float(input('Qual valor deseja sacar?\n'))
         if valor_a_ser_sacado > saldo:
             print('Valor para saque insuficiente.')
         elif valor_a_ser_sacado > limite_por_saque:
