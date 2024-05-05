@@ -6,7 +6,7 @@ numero_de_contas = 0
 
 def cadastro_usuario():
 # armazenar em lista/dictnome, cpf(somente numeros e n pode 2 cpfs iguais), data nascimento, endereco(rua, numero, bairro, cidade, sigla estado)
-    
+    lista_usuarios = []
     nome = input('Insira o seu nome completo: ')
     cpf = input('Insira o seu CPF: ').replace(".", "").replace("-","")
     data_nascimento = input('Insira sua data de nascimento: ')
