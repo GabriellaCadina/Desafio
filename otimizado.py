@@ -18,6 +18,11 @@ def cadastro_usuario():
         "data_de_nascimento" : data_nascimento,
         "endereco" : endereco
     }
+
+    lista_usuarios.append(dicionario_usuario)
+    print(lista_usuarios)
+
+
     return dicionario_usuario
 
 def cadastro_conta(numero_da_conta):
