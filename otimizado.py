@@ -2,11 +2,11 @@
 # criar funcao de cadastrar usuario e cadastrar conta bancaria
 
 SAQUE_DIARIO = 3
-numero_de_contas = 0
+
+lista_usuarios = []
 
 def cadastro_usuario():
 # armazenar em lista/dictnome, cpf(somente numeros e n pode 2 cpfs iguais), data nascimento, endereco(rua, numero, bairro, cidade, sigla estado)
-    lista_usuarios = []
     nome = input('Insira o seu nome completo: ')
     cpf = input('Insira o seu CPF: ').replace(".", "").replace("-","")
     data_nascimento = input('Insira sua data de nascimento: ')
@@ -16,12 +16,9 @@ def cadastro_usuario():
         "nome" : nome ,
         "cpf" : cpf ,
         "data_de_nascimento" : data_nascimento,
-        "endereco" : endereco
+        "endereco" : endereco,
+        "contas_bancarias" : []
     }
-
-    lista_usuarios.append(dicionario_usuario)
-    print(lista_usuarios)
-
 
     return dicionario_usuario
 
@@ -47,7 +44,8 @@ Selecione uma das opções abaixo para prosseguirmos com o seu atendimento:\n
 1. Depósito
 2. Saque
 3. Extrato Bancário
-4. Sair\n
+4. Cadastrar outro usuário
+5. Sair\n
 ''')
         if opcao_usuario == '1':
             deposito(conta_bancaria)
@@ -59,8 +57,15 @@ Selecione uma das opções abaixo para prosseguirmos com o seu atendimento:\n
             exibir_extrato(conta_bancaria)
         
         elif opcao_usuario == '4':
+            usuario = cadastro_usuario()
+            lista_usuarios.append(usuario)
+            numero_de_contas = len(lista_usuarios)
+            conta = cadastro_conta(numero_de_contas)
+            usuario["contas_bancarias"].append(conta)
+        
+        elif opcao_usuario == '5':
             break
-
+        
         else:
             print('Opção inválida. Por gentileza, selecione a opção desejada.')
         
@@ -94,8 +99,11 @@ def exibir_extrato(conta_bancaria):
     print('#########################################')
 
 
-usuario = cadastro_usuario()
-numero_de_contas += 1
-conta = cadastro_conta(numero_de_contas)
-menu(conta)
 
+usuario = cadastro_usuario()
+lista_usuarios.append(usuario)
+numero_de_contas = len(lista_usuarios)
+conta = cadastro_conta(numero_de_contas)
+usuario["contas_bancarias"].append(conta)
+menu(conta)
+print(lista_usuarios)
